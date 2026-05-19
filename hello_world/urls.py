@@ -27,6 +27,9 @@ urlpatterns = [
     path("legends/<slug:slug>/", core_views.character_detail, name="character_detail"),
     path("admin/", admin.site.urls),
     path("__reload__/", include("django_browser_reload.urls")),
+    # API endpoints
+    path("api/characters/", core_views.api_characters_list, name="api_characters_list"),
+    path("api/characters/<slug:slug>/", core_views.api_character_detail, name="api_character_detail"),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

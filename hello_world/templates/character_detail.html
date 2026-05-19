@@ -10,9 +10,13 @@
   <link rel="stylesheet" href="{% static 'main.css' %}">
 </head>
 <body>
+  <header class="App-header">
+    <div class="header-title">
+      <h1 class="year-title">{{ character.name | upper }}</h1>
+    </div>
+  </header>
   <main class="detail">
-    <a class="back" href="/">← Volver al catálogo</a>
-    <h1>{{ character.name }}</h1>
+    <h1 style="display: none;">{{ character.name }}</h1>
     <div class="detail-grid">
       <div class="image">
         <img src="{{ STATIC_PREFIX }}{{ character.image2 }}" alt="{{ character.name }}">
@@ -37,5 +41,18 @@
       </div>
     </div>
   </main>
+  <footer class="developers-footer">
+    <div class="developers-box">
+      <h2 class="developers-title">Desarrolladores</h2>
+      <div class="developers-list">
+        <div class="developer-item">De La Cruz Ramírez Jeremy Yael</div>
+        <div class="developer-item">Ramírez Cárdenas Luis Armando</div>
+      </div>
+      <div class="project-info">
+        <p><span class="label">Actividad:</span> Proyecto Final</p>
+        <p><span class="label">Materia:</span> Desarrollo Web para Inteligencia de Negocios</p>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
