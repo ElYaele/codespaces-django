@@ -1,33 +1,37 @@
 {% load django_browser_reload %}
 {% load static %}
+{% get_static_prefix as STATIC_PREFIX %}
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="GitHub Codespaces ♥️ Django">
-    <meta name="author" content="GitHub Codespaces">
-    <meta name="generator" content="GitHub Codespaces">
-    <meta name="theme-color" content="#000000">
-    <title>{% block title %}{{ title }} | GitHub Codespaces ♥️ Django{% endblock %}</title>
-    
+    <title>{% block title %}{{ title }}{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'main.css' %}">
 </head>
 
 <body>
-    <div class="App">
+    <main>
         <header class="App-header">
-            <img src="{% static 'Octocat.png' %}" class="App-logo" alt="logo" />
-            <p>
-                GitHub Codespaces <span class="heart">♥️</span> Django
-            </p>
-            <p class="small">
-                Edit <code>hello_world/templates/index.html</code> and see changes live!
-            </p>
+            <h1>Catálogo de Legends</h1>
+            <p class="small">Todos los personajes juntos. Haz click en uno para ver su ficha.</p>
         </header>
-    </div>
+
+        <section class="catalog">
+            <div class="catalog-grid">
+                {% for char in characters %}
+                <a class="card" href="{% url 'character_detail' slug=char.slug %}">
+                    <div class="thumb">
+                        <img src="{{ STATIC_PREFIX }}{{ char.image1 }}" alt="{{ char.name }}">
+                    </div>
+                    <div class="name">{{ char.name }}</div>
+                </a>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
 </body>
 
 </html>

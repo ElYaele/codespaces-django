@@ -1,0 +1,41 @@
+{% load static %}
+{% get_static_prefix as STATIC_PREFIX %}
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ character.name }} - Ficha</title>
+  <link rel="stylesheet" href="{% static 'main.css' %}">
+</head>
+<body>
+  <main class="detail">
+    <a class="back" href="/">← Volver al catálogo</a>
+    <h1>{{ character.name }}</h1>
+    <div class="detail-grid">
+      <div class="image">
+        <img src="{{ STATIC_PREFIX }}{{ character.image2 }}" alt="{{ character.name }}">
+      </div>
+      <div class="info">
+        <h2>Descripción</h2>
+        <p>{{ character.description }}</p>
+        <h2>Historia</h2>
+        <p>{{ character.history }}</p>
+        <h2>Habilidades</h2>
+        <div class="abilities">
+          {% for key, ability in character.abilities.items %}
+          <div class="ability">
+            <h3>{{ ability.name_es }}{% if ability.official_name %} <span class="official">({{ ability.official_name }})</span>{% endif %}</h3>
+            <p>{{ ability.desc }}</p>
+          </div>
+          {% endfor %}
+        </div>
+        {% if character.source %}
+        <p class="source">Fuente: <a href="{{ character.source }}" target="_blank" rel="noopener">Apex Legends Wiki</a></p>
+        {% endif %}
+      </div>
+    </div>
+  </main>
+</body>
+</html>
